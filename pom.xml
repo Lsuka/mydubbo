@@ -12,18 +12,31 @@
 	<url>http://maven.apache.org</url>
 
 	<properties>
+		<!--路径导出 start -->
 		<profiles.dir>src/main/profiles</profiles.dir>
+		<resources.dir>src/main/resources</resources.dir>
+		<!--路径导出 end -->
 		<!--duboo start -->
 		<dubbo.version>2.5.6</dubbo.version>
 		<!--duboo end -->
-		<!--duboo用的日志组件 start -->
+		<!--日志组件 start -->
 		<logback.version>1.2.3</logback.version>
 		<org.slf4j.version>1.7.25</org.slf4j.version>
-		<!--duboo用的日志组件 end -->
+		<!--日志组件 end -->
 		<!--zookeeper start -->
 		<zookeeper.version>3.4.10</zookeeper.version>
 		<zkclient.version>0.10</zkclient.version>
 		<!--zookeeper end -->
+		<!--druid start -->
+		<druid.version>1.1.4</druid.version>
+		<!--druid end -->
+		<!--mybatis start -->
+		<mybatis.version>3.4.5</mybatis.version>
+		<mybatis.spring.version>1.3.1</mybatis.spring.version>
+		<!--mybatis end -->
+		<!--mysql start -->
+		<mysql.version>5.1.29</mysql.version>
+		<!--mysql end -->
 		<!-- 基础环境配置 start -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<jdk.version>1.8</jdk.version>
@@ -34,6 +47,19 @@
 		<!--本地工具包的引入 start -->
 		<mydubbo.version>0.0.1</mydubbo.version>
 		<!--本地工具包的引入 end -->
+		<!--spring start -->
+		<spring.version>5.0.0.RELEASE</spring.version>
+		<!--spring end -->
+		<!--commons组件包 start -->
+		<commons.beanutils.version>1.9.3</commons.beanutils.version>
+		<commons.lang3.version>3.6</commons.lang3.version>
+		<!--commons组件包 end -->
+		<!--json start -->
+		<net.sf.json.version>2.3</net.sf.json.version>
+		<!--json end -->
+		<!--aspectj语法引入 start -->
+		<aspectj.version>1.8.12</aspectj.version>
+		<!--aspectj语法引入 end -->
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -50,6 +76,13 @@
 				<version>${mydubbo.version}</version>
 			</dependency>
 			<!--本地工具包的引入 end -->
+			<!--Druid连接池start -->
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>druid</artifactId>
+				<version>${druid.version}</version>
+			</dependency>
+			<!--Druid连接池end -->
 			<!--duboo start -->
 			<dependency>
 				<groupId>com.alibaba</groupId>
@@ -127,6 +160,82 @@
 				<version>${logback.version}</version>
 			</dependency>
 			<!--日志 end -->
+			<!-- mybatis 依赖 start -->
+			<dependency>
+				<groupId>org.mybatis</groupId>
+				<artifactId>mybatis</artifactId>
+				<version>${mybatis.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.mybatis</groupId>
+				<artifactId>mybatis-spring</artifactId>
+				<version>${mybatis.spring.version}</version><!--MyBatis-Spring integrates 
+					MyBatis seamlessly with Spring -->
+			</dependency>
+			<!-- mybatis 依赖 end -->
+			<!-- mysql start -->
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>${mysql.version}</version>
+			</dependency>
+			<!--mysql end -->
+			<!--commons工具类依赖 start -->
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>${commons.lang3.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-beanutils</groupId>
+				<artifactId>commons-beanutils</artifactId>
+				<version>${commons.beanutils.version}</version>
+				<exclusions>
+					<exclusion>
+						<artifactId>commons-logging</artifactId>
+						<groupId>commons-logging</groupId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<!--工具类依赖 end -->
+			<!--JSON start -->
+			<dependency>
+				<groupId>net.sf.json-lib</groupId>
+				<artifactId>json-lib</artifactId>
+				<version>${net.sf.json.version}</version>
+				<classifier>jdk15</classifier>
+				<scope>compile</scope>
+			</dependency>
+			<!--JSON end -->
+			<!--集成Spring 和 spring JDBC start -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context-support</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-test</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-jdbc</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<!--集成Spring 和 spring JDBC end -->
+			<!-- Spring AOP所要用到的包 start -->
+			<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjweaver</artifactId>
+				<version>${aspectj.version}</version>
+			</dependency>
+			<!-- Spring AOP所要用到的包 end -->
 			<!--zookeeper依赖 start -->
 			<dependency>
 				<groupId>org.apache.zookeeper</groupId>
@@ -163,8 +272,59 @@
 				</exclusions>
 			</dependency>
 			<!--zookeeper依赖 end -->
+			<!--spring start -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context-support</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-test</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-jdbc</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<!--spring end -->
 		</dependencies>
 	</dependencyManagement>
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<properties>
+				<profile.dir>${profiles.dir}/dev</profile.dir>
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+		<profile>
+			<id>beta</id>
+			<properties>
+				<profile.dir>${profiles.dir}/beta</profile.dir>
+			</properties>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+		</profile>
+		<profile>
+			<id>product</id>
+			<properties>
+				<profile.dir>${profiles.dir}/product</profile.dir>
+			</properties>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+		</profile>
+	</profiles>
 	<build>	<!-- 定义编译时的配置项 -->
 		<finalName>parent</finalName>
 		<plugins>
@@ -207,5 +367,8 @@
 	</build>
 	<modules>
 		<module>mydubbo-api</module>
+		<module>mydubbo-provider</module>
+		<module>mydubbo-service</module>
+		<module>mydubbo-consumer</module>
 	</modules>
 </project>
